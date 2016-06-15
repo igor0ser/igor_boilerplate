@@ -1,0 +1,22 @@
+﻿{
+  "name": "igor_boilerplate",
+  "version": "0.0.1",
+  "description": "Boilerplate for building new frontend projects",
+  "devDependencies": {
+    "autoprefixer": "^6.3.5",
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-concat": "^2.6.0",
+    "gulp-open": "^1.0.0",
+    "gulp-postcss": "^6.1.0",
+    "gulp-rigger": "^0.5.8",
+    "gulp-sass": "^2.0.4",
+    "gulp-watch": "^4.3.5",
+    "gulp.spritesmith": "^4.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/igor0ser/igor_boilerplate"
+  },
+  "license": "ISC"
+}
