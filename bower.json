@@ -1,0 +1,21 @@
+{
+  "name": "igor_boilerplate",
+  "version": "0.0.1",
+  "description": "Boilerplate for building new frontend projects",
+  "authors": [
+    "Igor Sergiienko"
+  ],
+  "license": "ISC",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/js/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.0",
+    "angular-ui-router": "~0.2.15"
+  }
+}
