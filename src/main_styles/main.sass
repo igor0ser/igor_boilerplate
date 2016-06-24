@@ -1,0 +1,36 @@
+﻿body
+	margin: 0
+	background: $background
+	font-family: Calibri
+	color: #fff
+
+.test-h2
+	text-align: center
+
+.test-img
+	display: block
+	margin: auto
+
+
+=test
+	width: 10px
+	height: 10px
+	background: lime;
+
+.icon
+	display: inline-block
+	cursor: pointer
+	&:hover
+		opacity: .75
+	&.icon1
+		+spr($sprite_instagram)
+	&.icon2
+		+spr($sprite_facebook)
+	&.icon3
+		+spr($sprite_pinterest)
+	&-container
+		width: 200px
+		margin: 20px auto
+
+
+
