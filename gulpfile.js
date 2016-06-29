@@ -27,9 +27,8 @@ const reload = browserSync.reload.bind(null, {stream: true});
 /* contants */
 const PATH = {
 	SRC: {
-		HTML: 'src/index.html',
+		HTML: 'src/**/*.html',
 		STYLES: [
-			/*'src/bower_components/include-media/dist/_include-media.scss',*/
 			'src/main_styles/sprite.sass', 
 			'src/main_styles/variables.sass',
 			'src/main_styles/mixins.sass',
