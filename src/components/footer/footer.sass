@@ -1,0 +1,23 @@
+﻿.footer
+	background: $background-header
+
+.footer
+	&-icon
+		display: inline-block
+		cursor: pointer
+		margin: 10px 0 10px 15px
+		&:hover
+			opacity: .75
+		&.icon1
+			+spr($sprite_instagram)
+		&.icon2
+			+spr($sprite_facebook)
+		&.icon3
+			+spr($sprite_pinterest)
+	&-icons
+		float: right
+	&-author
+		float: left
+		line-height: 84px
+		font-size: 1.17em
+

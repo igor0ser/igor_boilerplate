@@ -2,6 +2,7 @@
 
 /* common plugins */
 const gulp = require('gulp');
+const runSequence = require('run-sequence');
 const sourcemaps = require('gulp-sourcemaps');
 const concat = require('gulp-concat');
 const watch= require('gulp-watch');
@@ -22,7 +23,8 @@ const spritesmith = require('gulp.spritesmith');
 const imagemin = require('gulp-imagemin');
 /* server */
 const browserSync = require("browser-sync");
-const reload = browserSync.reload.bind(null, {stream: true});
+const reload = browserSync.reload;
+const webserver = require('gulp-webserver');
 
 /* contants */
 const PATH = {
@@ -33,6 +35,7 @@ const PATH = {
 			'src/main_styles/variables.sass',
 			'src/main_styles/mixins.sass',
 			'src/main_styles/main.sass',
+			'src/main_styles/reset.sass',
 			'src/components/**/*.sass'
 			],
 		SCRIPTS_LIB: [
@@ -49,12 +52,9 @@ const PATH = {
 		ROOT: 'src/'
 	},
 	SPRITES_STYLE: 'src/main_styles/',
-	WATCH: {
-		SASS: 'src/**/*.sass',
-		JS: 'src/**/*.js'
-	},
 	BUILD: 'build/',
-	IMAGES: 'build/img/'
+	IMAGES: 'build/img/',
+	LOCALHOST: 'http://localhost:8000/index.html'
 };
 
 const SERVER_CONFIG = {
@@ -63,7 +63,7 @@ const SERVER_CONFIG = {
 	},
 	tunnel: true,
 	host: 'localhost',
-	port: 100,
+	port: 8080,
 	logPrefix: 'Igor'
 };
 
@@ -71,21 +71,31 @@ const BABEL_CONFIG = { presets: ['es2015'] };
 
 /* tasks */
 
-gulp.task('default', ['build'], () =>
-	gulp.start(['server', 'watch'])
+gulp.task('default', () =>
+	 runSequence('build', 'server', 'watch')
 );
 
-gulp.task('server', () => browserSync(SERVER_CONFIG) );
+gulp.task('server2', () => browserSync(SERVER_CONFIG) );
 
-gulp.task('build', ['clean'], () => 
-	gulp.start( ['html', 'sprites', 'images', 'scripts', 'scripts_lib'] ) 
+gulp.task('server', () => 
+	gulp.src('build/')
+		.pipe(webserver({
+			livereload: true,
+			directoryListing: true,
+			open: PATH.LOCALHOST
+		}))
+);
+
+
+gulp.task('build', () => 
+	runSequence( 'clean', ['html', 'sprites', 'images', 'scripts', 'scripts_lib'] ) 
 );
 
 gulp.task('html', () => 
 		gulp
 			.src(PATH.SRC.HTML)
 			.pipe(gulp.dest(PATH.BUILD))
-			.pipe(reload())
+			.pipe(reload({stream: true}))
 );
 
 gulp.task('scripts', () => 
@@ -101,7 +111,6 @@ gulp.task('scripts', () =>
 		.pipe(uglify())
 		.pipe(sourcemaps.write())
 		.pipe(gulp.dest(PATH.BUILD))
-		.pipe(reload())
 );
 
 gulp.task('scripts_lib', () => 
@@ -121,7 +130,6 @@ gulp.task('styles', () =>
 			.pipe(cssmin())
 			.pipe(sourcemaps.write())
 			.pipe(gulp.dest(PATH.BUILD))
-			.pipe(reload())
 );
 
 gulp.task('images', () =>
@@ -149,8 +157,8 @@ gulp.task('sprites', () => {
 });
 
 gulp.task('watch', () => {
-	watch([PATH.WATCH.SASS], () => gulp.start('styles') );
-	watch([PATH.WATCH.JS], () => gulp.start('scripts') );
+	watch(PATH.SRC.STYLES, () => gulp.start('styles') );
+	watch(PATH.SRC.SCRIPTS, () => gulp.start('scripts') );
 	watch([PATH.SRC.HTML], () => gulp.start('html') );
 	watch([PATH.SRC.SPRITES], () => gulp.start('sprites') );
 	watch([PATH.SRC.IMAGES], () => gulp.start('images') );
