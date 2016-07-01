@@ -7,6 +7,8 @@ const sourcemaps = require('gulp-sourcemaps');
 const concat = require('gulp-concat');
 const watch= require('gulp-watch');
 const clean = require('gulp-clean');
+/* server plugin*/
+const webserver = require('gulp-webserver');
 /* css plugins */
 const sass = require('gulp-sass');
 const prefixer = require('gulp-autoprefixer');
@@ -16,17 +18,13 @@ const plumber = require('gulp-plumber');
 const ngAnnotate = require('gulp-ng-annotate');
 const babel = require('gulp-babel');
 const uglify = require('gulp-uglify');
-const addsrc = require('gulp-add-src');
 const insert = require('gulp-insert');
 /* sprite and image plugins */
 const spritesmith = require('gulp.spritesmith');
 const imagemin = require('gulp-imagemin');
-/* server */
-const browserSync = require("browser-sync");
-const reload = browserSync.reload;
-const webserver = require('gulp-webserver');
 
 /* contants */
+
 const PATH = {
 	SRC: {
 		HTML: 'src/**/*.html',
@@ -57,25 +55,11 @@ const PATH = {
 	LOCALHOST: 'http://localhost:8000/index.html'
 };
 
-const SERVER_CONFIG = {
-	server: {
-		baseDir: PATH.BUILD
-	},
-	tunnel: true,
-	host: 'localhost',
-	port: 8080,
-	logPrefix: 'Igor'
-};
-
-const BABEL_CONFIG = { presets: ['es2015'] };
-
 /* tasks */
 
 gulp.task('default', () =>
 	 runSequence('build', 'server', 'watch')
 );
-
-gulp.task('server2', () => browserSync(SERVER_CONFIG) );
 
 gulp.task('server', () => 
 	gulp.src('build/')
@@ -95,7 +79,6 @@ gulp.task('html', () =>
 		gulp
 			.src(PATH.SRC.HTML)
 			.pipe(gulp.dest(PATH.BUILD))
-			.pipe(reload({stream: true}))
 );
 
 gulp.task('scripts', () => 
@@ -107,7 +90,7 @@ gulp.task('scripts', () =>
 		.pipe(insert.prepend('(function(){'))
 		.pipe(insert.append('})();'))
 		.pipe(ngAnnotate())
-		.pipe(babel(BABEL_CONFIG))
+		.pipe(babel({ presets: ['es2015'] }))
 		.pipe(uglify())
 		.pipe(sourcemaps.write())
 		.pipe(gulp.dest(PATH.BUILD))
