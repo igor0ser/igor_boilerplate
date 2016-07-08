@@ -1,0 +1,37 @@
+﻿[
+	{
+		"id": 0,
+		"name": "Apple Watch",
+		"price": "110",
+		"description": "Because it’s on your wrist, Apple Watch lets you receive notifications immediately and conveniently. The moment the people or apps you care about have something to say, you’ll feel a gentle tap. Then you can send just the right response. Just like that.",
+		"img": "img/products/apple-watch.jpg"
+	},
+	{
+		"id": 1,
+		"name": "iPad Pro",
+		"price": "780",
+		"description": "iPad Pro is more than the next generation of iPad — it’s an uncompromising vision of personal computing for the modern world. It puts incredible power that leaps past most portable PCs at your fingertips. It makes even complex work as natural as touching, swiping, or writing with a pencil. And whether you choose the 12.9-inch model or the new 9.7-inch model, iPad Pro is more capable, versatile, and portable than anything that’s come before. In a word, super.",
+		"img": "img/products/ipad-pro.jpg"
+	},
+	{
+		"id": 2,
+		"name": "iPhone SE",
+		"price": "970",
+		"description": "iPhone SE takes an incredibly popular design and refines it even further. Crafted from bead-blasted aluminum for a satin-like finish, this light and compact phone is designed to fit comfortably in your hand. A brilliant 4‑inch1 Retina display makes everything look vibrant and sharp. And matte-chamfered edges and a color-matched stainless steel logo finish the look.",
+		"img": "img/products/iphone-se.jpg"
+	},
+	{
+		"id": 3,
+		"name": "iPhone 6",
+		"price": "280",
+		"description": "Free next business day delivery on any in-stock iPhone ordered by 5 p.m.",
+		"img": "img/products/iphone6.jpg"
+	},
+	{
+		"id": 4,
+		"name": "iPhone 6s",
+		"price": "490",
+		"description": "The moment you use iPhone 6s, you know you’ve never felt anything like it. With a single press, 3D Touch lets you do more than ever before. Live Photos bring your memories to life in a powerfully vivid way. And that’s just the beginning. Take a deeper look at iPhone 6s, and you’ll find innovation on every level.",
+		"img": "img/products/iphone6s.jpg"
+	}
+]
