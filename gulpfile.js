@@ -12,7 +12,7 @@ const webserver = require('gulp-webserver');
 /* css plugins */
 const sass = require('gulp-sass');
 const prefixer = require('gulp-autoprefixer');
-const cssmin = require('gulp-minify-css');
+const cssmin = require('gulp-clean-css');
 /* js plugins */
 const plumber = require('gulp-plumber');
 const ngAnnotate = require('gulp-ng-annotate');
